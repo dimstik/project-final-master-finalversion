@@ -24,15 +24,15 @@ public class FileUtil {
         if (multipartFile.isEmpty()) {
             throw new IllegalRequestDataException("Select a file to upload.");
         }
-
-        File dir = new File(directoryPath);
-        if (dir.exists() || dir.mkdirs()) {
-            File file = new File(directoryPath + fileName);
-            try (OutputStream outStream = new FileOutputStream(file)) {
-                outStream.write(multipartFile.getBytes());
-            } catch (IOException ex) {
-                throw new IllegalRequestDataException("Failed to upload file" + multipartFile.getOriginalFilename());
+        try {
+            Path directory = Paths.get(directoryPath);
+            if (!Files.exists(directory)) {
+                Files.createDirectories(directory);
             }
+            Path pathFile = directory.resolve(fileName);
+            multipartFile.transferTo(pathFile);
+        } catch (IOException e) {
+            throw new IllegalRequestDataException("Failed to upload file" + fileName);
         }
     }
 
@@ -51,9 +51,8 @@ public class FileUtil {
     }
 
     public static void delete(String fileLink) {
-        Path path = Paths.get(fileLink);
         try {
-            Files.delete(path);
+            Files.deleteIfExists(Paths.get(fileLink));
         } catch (IOException ex) {
             throw new IllegalRequestDataException("File" + fileLink + " deletion failed.");
         }
