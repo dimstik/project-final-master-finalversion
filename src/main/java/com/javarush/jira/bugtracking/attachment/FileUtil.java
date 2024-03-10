@@ -48,8 +48,9 @@ public class FileUtil {
     }
 
     public static void delete(String fileLink) {
+        Path path = Paths.get(fileLink);
         try {
-            Files.deleteIfExists(Paths.get(fileLink));
+            Files.delete(path);
         } catch (IOException ex) {
             throw new IllegalRequestDataException("File" + fileLink + " deletion failed.");
         }
