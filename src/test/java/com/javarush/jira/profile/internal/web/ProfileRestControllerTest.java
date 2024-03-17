@@ -1,8 +1,8 @@
 package com.javarush.jira.profile.internal.web;
 
-import com.javarush.jira.AbstractControllerTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
-
-class ProfileRestControllerTest extends AbstractControllerTest {
+@WebMvcTest(ProfileRestController.class)
+public class ProfileRestControllerTest {
 
 }
