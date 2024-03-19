@@ -1,0 +1,22 @@
+03-10 16:51:25.624 [    main] INFO | org.springframework.boot.StartupInfoLogger.logStarting:51 Starting JiraRushApplication using Java 18.0.1.1 with PID 7088 (D:\Intership\Module 5 Spring\JavaRushCourse\project-final-master\target\classes started by Asus in D:\Intership\Module 5 Spring\JavaRushCourse\project-final-master)
+03-10 16:51:25.626 [    main] DEBUG| org.springframework.boot.StartupInfoLogger.logStarting:52 Running with Spring Boot v3.0.2, Spring v6.0.4
+03-10 16:51:25.626 [    main] INFO | org.springframework.boot.SpringApplication.logStartupProfileInfo:636 The following 1 profile is active: "prod"
+03-10 16:51:28.416 [    main] WARN | o.h.b.i.MetadataBuilderImpl$MetadataBuildingOptionsImpl.lambda$new$1:626 HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+03-10 16:51:29.935 [    main] DEBUG| o.s.w.s.m.m.annotation.ExceptionHandlerExceptionResolver.initExceptionHandlerAdviceCache:292 ControllerAdvice beans: 3 @ExceptionHandler, 1 ResponseBodyAdvice
+03-10 16:51:30.103 [    main] DEBUG| o.s.scheduling.concurrent.ExecutorConfigurationSupport.initialize:181 Initializing ExecutorService 'mailExecutor'
+03-10 16:51:30.160 [    main] INFO | com.javarush.jira.ref.ReferenceService.initialize:56 init loading
+03-10 16:51:30.240 [    main] DEBUG| o.s.web.servlet.handler.SimpleUrlHandlerMapping.logMappings:187 Patterns [/view/**] in 'getUrlHandlerMapping'
+03-10 16:51:30.717 [    main] INFO | org.springframework.boot.StartupInfoLogger.logStarted:57 Started JiraRushApplication in 5.457 seconds (process running for 8.773)
+03-10 16:51:44.552 [0-exec-1] DEBUG| o.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler:527 Mapped to org.springframework.web.servlet.mvc.UrlFilenameViewController@60453efb
+03-10 16:51:44.558 [0-exec-1] DEBUG| o.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler:527 Mapped to org.springframework.web.servlet.mvc.UrlFilenameViewController@60453efb
+03-10 16:51:44.951 [0-exec-7] DEBUG| o.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler:527 Mapped to org.springframework.web.servlet.mvc.UrlFilenameViewController@60453efb
+03-10 16:51:44.952 [0-exec-7] DEBUG| o.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler:527 Mapped to org.springframework.web.servlet.mvc.UrlFilenameViewController@60453efb
+03-10 16:51:58.858 [0-exec-5] DEBUG| o.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler:527 Mapped to org.springframework.web.servlet.mvc.UrlFilenameViewController@60453efb
+03-10 16:51:58.933 [0-exec-5] DEBUG| com.javarush.jira.common.internal.config.SecurityConfig.lambda$userDetailsService$0:51 Authenticating 'admin@gmail.com'
+03-10 16:51:59.046 [-exec-10] ERROR| com.javarush.jira.common.internal.web.UIExceptionHandler.processError:56 ERR# Exception No message available at request /static/bootstrap/css/bootstrap-select.min.css
+03-10 16:52:03.830 [0-exec-8] INFO | c.j.jira.profile.internal.web.AbstractProfileController.get:20 get 2
+03-10 16:52:03.858 [0-exec-8] DEBUG| com.javarush.jira.ref.ReferenceService.getRefs:30 get by type MAIL_NOTIFICATION
+03-10 16:52:03.859 [0-exec-8] DEBUG| com.javarush.jira.ref.ReferenceService.getRefs:30 get by type CONTACT
+03-10 16:52:03.859 [0-exec-8] DEBUG| com.javarush.jira.ref.ReferenceService.getRefs:30 get by type MAIL_NOTIFICATION
+03-10 16:52:03.920 [-exec-10] ERROR| com.javarush.jira.common.internal.web.UIExceptionHandler.processError:56 ERR# Exception No message available at request /static/bootstrap/css/bootstrap-select.min.css
+03-10 16:52:22.575 [downHook] DEBUG| o.s.scheduling.concurrent.ExecutorConfigurationSupport.shutdown:218 Shutting down ExecutorService 'mailExecutor'
