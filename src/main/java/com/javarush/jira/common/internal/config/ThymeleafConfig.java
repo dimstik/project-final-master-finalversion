@@ -50,7 +50,7 @@ public class ThymeleafConfig {
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-        interceptor.setParamName("lang"); // Имя параметра, которое будет использоваться для изменения языка
+        interceptor.setParamName("lang");
         return interceptor;
     }
 

@@ -86,10 +86,10 @@ spring:
           starttls:
             enable: true
           auth: true
-    host: smtp.gmail.com
+    host: ${spring.mail.host}
     username: ${spring.mail.username}
     password: ${spring.mail.password}
-    port: 587
+    port: ${spring.mail.port}
   thymeleaf.check-template-location: false
 
   mvc.throw-exception-if-no-handler-found: true

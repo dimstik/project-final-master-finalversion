@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  db:
+    container_name: db
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=jira
+      - POSTGRES_PASSWORD=JiraRush
+      - POSTGRES_DB=jira
+    networks:
+      - backend
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - backend
+
+  app:
+    container_name: jira-app
+    build:
+      context: .
+    image: jira-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - nginx
+    environment:
+      - DB_URL=jdbc:postgresql://db:5432/jira
+      - DB_USERNAME=jira
+      - DB_PASSWORD=JiraRush
+networks:
+  backend:
+    driver: bridge
