@@ -70,36 +70,36 @@ public class AppConfig {
         @JsonAnyGetter
         Map<String, Object> getProperties();
     }
-//    @Bean
-//    @Profile("prod")
-//    public DataSource getDataSourceProd(){
-//        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
-//        dataSourceBuilder.driverClassName("org.postgresql.Driver");
-//        dataSourceBuilder.url(env.getProperty("spring.datasource.url"));
-//        dataSourceBuilder.username(env.getProperty(("spring.datasource.username")));
-//        dataSourceBuilder.password(env.getProperty(("spring.datasource.password")));
-//        return dataSourceBuilder.build();
-//    }
-//
-//    @Bean
-//    @Profile("test")
-//    public DataSource getDataSourceTest(){
-//        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
-//        dataSourceBuilder.driverClassName("org.h2.Driver");
-//        dataSourceBuilder.url("jdbc:h2:mem:db;NON_KEYWORDS=VALUE");
-//        return dataSourceBuilder.build();
-//    }
-//
-//    @Bean
-//    public SpringLiquibase getLiquibase(){
-//        SpringLiquibase liquibase = new SpringLiquibase();
-//        if (isProd()){
-//            liquibase.setDataSource(getDataSourceProd());
-//            liquibase.setChangeLog("classpath:db/changelog.sql");
-//        } else if (isTest()) {
-//            liquibase.setDataSource(getDataSourceTest());
-//            liquibase.setChangeLog("classpath:changelog_h2.sql");
-//        }
-//        return liquibase;
-//    }
+    @Bean
+    @Profile("prod")
+    public DataSource getDataSourceProd(){
+        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.driverClassName("org.postgresql.Driver");
+        dataSourceBuilder.url(env.getProperty("spring.datasource.url"));
+        dataSourceBuilder.username(env.getProperty(("spring.datasource.username")));
+        dataSourceBuilder.password(env.getProperty(("spring.datasource.password")));
+        return dataSourceBuilder.build();
+    }
+
+    @Bean
+    @Profile("test")
+    public DataSource getDataSourceTest(){
+        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.driverClassName("org.h2.Driver");
+        dataSourceBuilder.url("jdbc:h2:mem:db;NON_KEYWORDS=VALUE");
+        return dataSourceBuilder.build();
+    }
+
+    @Bean
+    public SpringLiquibase getLiquibase(){
+        SpringLiquibase liquibase = new SpringLiquibase();
+        if (isProd()){
+            liquibase.setDataSource(getDataSourceProd());
+            liquibase.setChangeLog("classpath:db/changelog.sql");
+        } else if (isTest()) {
+            liquibase.setDataSource(getDataSourceTest());
+            liquibase.setChangeLog("classpath:changelog_h2.sql");
+        }
+        return liquibase;
+    }
 }

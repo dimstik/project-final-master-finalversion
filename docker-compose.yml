@@ -1,43 +1,52 @@
-version: "3.8"
-
+version: '3.8'
 services:
+  app:
+    container_name: jira-app
+    image: jira
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+    networks:
+      - backend
+
   db:
-    container_name: db
-    image: postgres:latest
+    container_name: jira-db
+    image: postgres:14.7-alpine
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=jira
-      - POSTGRES_PASSWORD=JiraRush
-      - POSTGRES_DB=jira
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB}
+    healthcheck:
+      test: pg_isready -h localhost -U $$POSTGRES_USER
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
     networks:
       - backend
 
   nginx:
     container_name: nginx
-    image: nginx:latest
-    restart: always
+    image: nginx
     ports:
       - "80:80"
     volumes:
       - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
       - backend
-
-  app:
-    container_name: jira-app
-    build:
-      context: .
-    image: jira-app
-    ports:
-      - "8080:8080"
     depends_on:
-      - db
-      - nginx
-    environment:
-      - DB_URL=jdbc:postgresql://db:5432/jira
-      - DB_USERNAME=jira
-      - DB_PASSWORD=JiraRush
+      app:
+        condition: service_started
+
 networks:
   backend:
     driver: bridge

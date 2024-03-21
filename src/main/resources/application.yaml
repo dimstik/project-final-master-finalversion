@@ -9,11 +9,11 @@ app:
 
 spring:
   init:
-    mode: never
+    mode: none
+
   jpa:
     show-sql: true
     open-in-view: false
-
     # validate db by model
     hibernate:
       ddl-auto: validate
@@ -26,12 +26,9 @@ spring:
         # https://stackoverflow.com/questions/21257819/what-is-the-difference-between-hibernate-jdbc-fetch-size-and-hibernate-jdbc-batc
         jdbc.batch_size: 20
   datasource:
-    url: ${spring.datasource.url}
-    username: ${spring.datasource.username}
-    password: ${spring.datasource.password}
-
-  liquibase:
-    changeLog: "classpath:db/changelog.sql"
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   # Jackson Fields Serialization
   jackson:
@@ -51,19 +48,19 @@ spring:
       client:
         registration:
           github:
-            client-id: ${spring.security.oauth2.client.registration.github.client-id}
-            client-secret: ${spring.security.oauth2.client.registration.github.client-secret}
+            client-id: ${OAUTH2_GITHUB_CLIENT_ID}
+            client-secret: ${OAUTH2_GITHUB_CLIENT_SECRET}
             scope:
               - email
           google:
-            client-id: ${spring.security.oauth2.client.registration.google.client-id}
-            client-secret: ${spring.security.oauth2.client.registration.google.client-secret}
+            client-id: ${OAUTH2_GOOGLE_CLIENT_ID}
+            client-secret: ${OAUTH2_GOOGLE_CLIENT_SECRET}
             scope:
               - email
               - profile
           gitlab:
-            client-id: ${spring.security.oauth2.client.registration.gitlab.client-id}
-            client-secret: ${spring.security.oauth2.client.registration.gitlab.client-secret}
+            client-id: ${OAUTH2_GITLAB_CLIENT_ID}
+            client-secret: ${OAUTH2_GITLAB_CLIENT_SECRET}
             client-name: GitLab
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             authorization-grant-type: authorization_code
@@ -78,6 +75,8 @@ spring:
   sql:
     init:
       mode: always
+      data-locations: classpath:data4dev/data.sql
+      schema-locations: classpath:db/changelog.sql
 
   mail:
     properties:
@@ -86,10 +85,10 @@ spring:
           starttls:
             enable: true
           auth: true
-    host: ${spring.mail.host}
-    username: ${spring.mail.username}
-    password: ${spring.mail.password}
-    port: ${spring.mail.port}
+    host: ${MAIL_HOST}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    port: ${MAIL_PORT}
   thymeleaf.check-template-location: false
 
   mvc.throw-exception-if-no-handler-found: true
